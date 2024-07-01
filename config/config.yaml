@@ -1,0 +1,237 @@
+#data
+raw_dataset_path: ../dataset/raw/loan_data_2007_2014.csv
+dataset_path: ../dataset/output/data.pkl
+
+train_path: 
+- '../dataset/output/X_train.pkl'
+- '../dataset/output/y_train.pkl'
+test_path: 
+- '../dataset/output/X_test.pkl' 
+- '../dataset/output/y_test.pkl'
+
+# Variables
+response_variable: 'good_loan'
+test_size: 0.2
+
+## Ordered variables
+emp_length: 
+- '< 1 year'
+- '1 year'
+- '2 years' 
+- '3 years'
+- '4 years' 
+- '5 years' 
+- '6 years' 
+- '7 years' 
+- '8 years' 
+- '9 years' 
+- '10+ years'
+home_ownership:
+- 'OWN' 
+- 'MORTGAGE'    
+- 'RENT'                 
+- 'OTHER'       
+- 'ANY'   
+- 'NONE'   
+purpose:
+- 'debt_consolidation'
+- 'credit_card'
+- 'home_improvement'
+- 'other'
+- 'major_purchase'
+- 'small_business'
+- 'car'
+- 'medical'
+- 'moving'
+- 'vacation'
+- 'wedding'
+- 'house'
+- 'educational'
+- 'renewable_energy'     
+      
+## Drop Variables
+post_approval_columns:
+- pymnt_plan 
+- out_prncp
+- out_prncp_inv
+- total_pymnt
+- total_pymnt_inv
+- total_rec_prncp
+- total_rec_int
+- total_rec_late_fee
+- recoveries
+- collection_recovery_fee
+- last_pymnt_d
+- last_pymnt_amnt
+- next_pymnt_d
+- last_credit_pull_d
+irrelevant_columns:
+- id
+- member_id
+- url
+- desc
+- emp_title
+- title
+- zip_code
+- policy_code
+- sub_grade
+- application_type
+missing_columns:
+- mths_since_last_delinq
+- mths_since_last_record
+- mths_since_last_major_derog
+- annual_inc_joint
+- dti_joint
+- verification_status_joint
+- open_acc_6m
+- open_il_6m
+- open_il_12m
+- open_il_24m
+- mths_since_rcnt_il
+- total_bal_il
+- il_util
+- open_rv_12m
+- open_rv_24m
+- max_bal_bc
+- all_util
+- inq_fi
+- total_cu_tl
+- inq_last_12m
+low_corr_columns:
+- funded_amnt_inv
+- pub_rec
+- open_acc
+- collections_12_mths_ex_med
+- delinq_2yrs
+- tot_coll_amt
+- acc_now_delinq
+multicolinearity_columns:
+- installment
+- revol_bal
+- funded_amnt
+
+## Selection Variable
+original_columns:
+- loan_amnt 
+- int_rate 
+- grade
+- home_ownership
+- annual_inc
+- verification_status
+- purpose
+- addr_state
+- dti
+- inq_last_6mths
+- revol_util
+- total_acc
+- initial_list_status
+- tot_cur_bal 
+- total_rev_hi_lim
+- term_int
+- emp_length_int
+- mths_since_issue_d
+- mths_since_earliest_cr_line
+- good_loan
+selection_columns:
+- grade:A
+- grade:B
+- grade:C
+- grade:D
+- grade:E
+- grade:F
+- grade:G
+- home_ownership:RENT_OTHER_ANY_NONE
+- home_ownership:OWN
+- home_ownership:MORTGAGE
+- verification_status:Not Verified
+- verification_status:Source Verified
+- verification_status:Verified
+- purpose:small_business_educational_moving_wedding_house
+- purpose:other_renewable_energy_vacation_medical
+- purpose:debt_consolidation
+- purpose:major_purchase_car_home_improvement
+- purpose:credit_card
+- initial_list_status:f
+- initial_list_status:w
+- int_rate:<9.548
+- int_rate:9.548-12.025
+- int_rate:12.026-15.74
+- int_rate:15.75-20.281
+- int_rate:>20.281
+- annual_inc:<20k
+- annual_inc:20k-30k
+- annual_inc:30k-40k
+- annual_inc:40k-50k
+- annual_inc:50k-60k
+- annual_inc:60k-70k
+- annual_inc:70k-80k
+- annual_inc:80k-100k
+- annual_inc:>100k
+- dti:<7.7
+- dti:7.7-10.5
+- dti:10.6-14.0
+- dti:14.1-17.5
+- dti:17.6-18.8
+- dti:18.9-23.1
+- dti:23.2-30.1
+- dti:>30.1
+- inq_last_6mths:0
+- inq_last_6mths:1-2
+- inq_last_6mths:3-6
+- inq_last_6mths:>6
+- revol_util:<14
+- revol_util:14-30
+- revol_util:31-40
+- revol_util:41-50
+- revol_util:51-60
+- revol_util:61-68
+- revol_util:69-82
+- revol_util:>82
+- tot_cur_bal:<20k
+- tot_cur_bal:20k-40k
+- tot_cur_bal:40k-80k
+- tot_cur_bal:80k-120k
+- tot_cur_bal:120k-240k
+- tot_cur_bal:240k-360k
+- tot_cur_bal:>360k
+- total_rev_hi_lim:<5k
+- total_rev_hi_lim:5k-10k
+- total_rev_hi_lim:10k-20k
+- total_rev_hi_lim:20k-40k
+- total_rev_hi_lim:40k-65k
+- total_rev_hi_lim:65k-95k
+- total_rev_hi_lim:>95k
+- term:36
+- term:60
+- mths_since_issue_d:<70
+- mths_since_issue_d:70-75 
+- mths_since_issue_d:75-80 
+- mths_since_issue_d:80-85
+- mths_since_issue_d:85-95
+- mths_since_issue_d:>95
+ref_columns:
+- grade:G
+- home_ownership:RENT_OTHER_ANY_NONE
+- verification_status:Verified
+- purpose:small_business_educational_moving_wedding_house
+- initial_list_status:f
+- int_rate:>20.281
+- annual_inc:<20k
+- dti:>30.1
+- inq_last_6mths:>6
+- revol_util:>82
+- tot_cur_bal:80k-120k
+- total_rev_hi_lim:<5k
+- term:60
+- mths_since_issue_d:>95
+
+
+# Models
+penalty: 'l2'
+num_of_cv: 10
+scoring: 'recall'
+
+forward_models_path: ../models/forward_models.pkl
+best_predictors_path: ../models/best_predictors_path.pkl
+best_model_path: ../models/best_model.pkl
+best_model_summary_path: ../models/best_model_summary.pkl
